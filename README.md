@@ -1,7 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo is to build a quick chat application to learn hotwire.
 
 Things you may want to cover:
 
