@@ -2,11 +2,16 @@ class MessagesController < ApplicationController
   before_action :set_room, only: %i[ new create ]
 
   def new
-    @message = @room.messages.create!(message_params)
+    @message = Message.new  # Initialize a new message instance
+  end
 
-    respond_to do |format|
-      format.html { redirect_to @room }
-    end 
+  def create
+     @message = @room.messages.new(message_params)
+    if @message.save
+      redirect_to room_path(@room), notice: 'Message was successfully created.'
+    else
+      render :new
+    end
   end
 
   private
