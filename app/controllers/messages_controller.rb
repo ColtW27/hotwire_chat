@@ -6,11 +6,11 @@ class MessagesController < ApplicationController
   end
 
   def create
-     @message = @room.messages.new(message_params)
-    if @message.save
-      redirect_to room_path(@room), notice: 'Message was successfully created.'
-    else
-      render :new
+    @message = @room.messages.create!(message_params)
+    
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @room }
     end
   end
 
